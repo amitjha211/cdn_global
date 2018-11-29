@@ -1,0 +1,157 @@
+﻿<div class="row" ng-controller="sys_moduleList">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Module List
+                <button class="btn btn-success btn-xs pull-right" ng-click="grd.addNew()"><i class="fa fa-plus"></i>&nbsp;Add New Module</button>
+            </div>
+            <div class="panel-body">
+                <div class="row" style="margin-bottom: 5px">
+                    <div class="col-md-12">
+                        <grd-filter grd="grd"></grd-filter>
+                    </div>
+                </div>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Module Name &nbsp;<sorter grd="grd" col="module_name"></sorter>
+                            </th>
+                            <th>Module Code<sorter grd="grd" col="module_code"></sorter>
+                            </th>
+                            <th width="10%">Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody ng-hide="grd.busy">
+                        <tr ng-repeat="r in grd.rows">
+                            <td>
+                                <a href="javascript:;" ng-click="grd.selectRecord(r)"><span ng-bind="r.module_name"></span></a></td>
+                            <td>
+                                <span ng-bind="r.module_code"></span>
+                            </td>
+                            <td>
+                                <a href="javascript:;" ng-click="grd.edit1(r)"><i class="fa fa-edit"></i></a>
+                                <a href="javascript:;" ng-click="grd.del(r,null,$event)"><i class="fa fa-trash-o"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <busy grd="grd"></busy>
+                <pager grd="grd" />
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+    </div>
+    <div class="col-md-6">
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <i class="fa fa-gear"></i>&nbsp;Module : <span ng-bind="grd.row.module_name"></span>
+
+                <button class="btn btn-default btn-xs pull-right" ng-click="grdActions.addNew()"><i class="fa fa-plus"></i>&nbsp;Add New</button>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" ng-model="grdActions.src2" />
+                    </div>
+                </div>
+
+                <hr />
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Action Name</th>
+                            <th>Action Code</th>
+                            <th width="20%">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="r in grdActions.rows | filter : grdActions.src2 ">
+                            <td>
+                                <span ng-bind="r.OperationName"></span>
+                            </td>
+                            <td>
+                                <span ng-bind="r.OperationCode"></span>
+                            </td>
+                            <td>
+                                <a href="javascript:;" ng-click="grdActions.edit1(r)"><i class="fa fa-edit"></i></a>
+                                <a href="javascript:;" ng-click="grdActions.del(r,null,$event)"><i class="fa fa-trash-o "></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="panel-footer">
+                <button><i class="fa fa-save"></i>Save</button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="divEntry">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"><i class="fa fa-user"></i>&nbsp;Module Entry : <span ng-bind="grd.row.module_name"></span></h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label>Module Name <span style="color: red">**</span></label>
+                        <input type="text" class="form-control" placeholder="Module Name" ng-model="grd.row.module_name" />
+                    </div>
+                    <div class="form-group">
+                        <label>Module Code</label>
+                        <input type="text" class="form-control" placeholder="Module Name" ng-model="grd.row.module_code" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="grd.save(null,$event)"><i class="fa fa-floppy-o"></i>&nbsp;Save changes</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="divAction">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"><i class="fa fa-user"></i>&nbsp;Module Action Entry : <span ng-bind="grdActions.row.module_name"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Module Name <span style="color: red">**</span></label>
+                        <input type="text" class="form-control" placeholder="Action Name" ng-model="grdActions.row.OperationName" />
+                    </div>
+                    <div class="form-group">
+                        <label>Module Code</label>
+                        <input type="text" class="form-control" placeholder="Action code" ng-model="grdActions.row.OperationCode" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="grdActions.save(null,$event)"><i class="fa fa-floppy-o"></i>&nbsp;Save changes</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+

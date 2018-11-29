@@ -1,0 +1,59 @@
+
+<div class="row">
+    <div class="col-md-12">
+        <select v-model="grd.pageSize" class="form-control input-xsmall input-inline"  style="float:left;width:50px;padding:2px;margin-top:4px" v-on:change="grd.pageIndex = 0; grd.load();">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+        </select>
+        
+        <div  style="padding-top:10px;float:left;"> 
+            &nbsp;&nbsp; Page : <b> <span class="badge" style="background-color: #3c763d" v-text="grd.pageIndex + 1"> </span> </b> Of <span v-text="grd.getPageCount()"></span> | Total Count : <span  v-text="grd.count"></span>
+        </div>
+        
+        <ul class="pagination pull-right no-padding" style="margin-top:4px;margin-bottom:1px;">
+            <li ><a href="javascript:;" v-on:click="grd.MoveToFirstPage()" v-show="grd.getPageCount() > grd.pageButtons.length  " ><i class="fa fa-step-backward"></i></a></li>
+            <li><a href="javascript:;" aria-label="Previous" v-show="grd.getPageCount() > grd.pageButtons.length  " v-on:click="grd.MovePrevious()" >
+            <span aria-hidden="true">&laquo;</span> </a></li>
+            <li  v-for="r in grd.pageButtons"  v-bind:class="{ 'active': r == grd.pageIndex }" v-show="r < grd.getPageCount()" >
+                <a href="javascript:;" v-on:click="grd.changePage(r)"  v-text="r + 1" ></a></li>
+            <li><a href="javascript:;" aria-label="Next" v-show="grd.getPageCount() > grd.pageButtons.length  "  v-on:click="grd.MoveNext()" ><span
+                aria-hidden="true">&raquo;</span> </a></li>
+            <li><a href="javascript:;" v-on:click="grd.MoveToLastPage()" v-show="grd.getPageCount() > grd.pageButtons.length  "><i class="fa fa-step-forward"></i></a></li>
+        </ul>
+        
+
+    </div>
+    
+</div>
+<!--
+<nav class="navbar no-padding" style="min-height:5px !important;margin:0px">
+     <div class="pull-left no-padding col-md-6" style="padding:0px"ng-show="grd.count > 1">
+
+    <select v-model="grd.pageSize" class="form-control input-xsmall input-inline"  style="float:left;width:60px;padding:2px;margin-top:4px" v-on:change="grd.pageIndex = 0; grd.load();">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+    </select>
+    
+     
+         
+    <div  style="padding-top:10px;float:left;"> &nbsp;&nbsp; Page : <b> <span v-text="grd.pageIndex + 1"> </span> </b> Of <span v-text="grd.getPageCount()"></span> | Total Records <span v-text="grd.count"></span></div>
+    </div>
+
+    <div class="col-md-6 pull-right no-padding " v-show="grd.getPageCount() > 1" >
+        <ul class="pagination pull-right no-padding" style="margin-top:4px;margin-bottom:1px;">
+            <li ><a href="javascript:;" v-on:click="grd.MoveToFirstPage()" v-show="grd.getPageCount() > grd.pageButtons.length  " ><i class="fa fa-step-backward"></i></a></li>
+            <li><a href="javascript:;" aria-label="Previous" v-show="grd.getPageCount() > grd.pageButtons.length  " v-on:click="grd.MovePrevious()" >
+            <span aria-hidden="true">&laquo;</span> </a></li>
+            <li  v-for="r in grd.pageButtons"  v-bind:class="{ 'active': r == grd.pageIndex }" v-show="r < grd.getPageCount()" >
+                <a href="javascript:;" v-on:click="grd.changePage(r)"  v-text="r + 1" ></a></li>
+            <li><a href="javascript:;" aria-label="Next" v-show="grd.getPageCount() > grd.pageButtons.length  "  v-on:click="grd.MoveNext()" ><span
+                aria-hidden="true">&raquo;</span> </a></li>
+            <li><a href="javascript:;" v-on:click="grd.MoveToLastPage()" v-show="grd.getPageCount() > grd.pageButtons.length  "><i class="fa fa-step-forward"></i></a></li>
+        </ul>
+    </div>
+</nav>
+-->

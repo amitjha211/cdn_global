@@ -1,0 +1,86 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading hidden">
+        <i class="fa fa-file-pdf-o"></i>&nbsp;Upload PDF
+    </div>
+    <div class="panel-body" style="height: 421px; overflow: auto">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="file" class="form-control" multiple v-on:change="fillFiles($event)" />
+
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary" v-on:click="oFiles.uploadFiles()"><i class="fa fa-upload"></i></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="progress text-center">
+                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" v-bind:style="{ width : oFiles.getPer() + '%' }">
+                        <span v-text="oFiles.getPer()"></span>&nbsp;%    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>
+                            <span>Total Files</span> : <span class="label label-primary" v-text="oFiles.rows.length"></span>
+                        </td>
+                        <td>
+                            <span>Completed</span> : <span class="label label-success" v-text="oFiles.process.doneCount"></span>
+                        </td>
+                        <td>
+                            <span>Error</span> : <span class="label label-danger" v-text="oFiles.process.errorCount"></span>
+                        </td>
+                    </tr>
+                </table>
+
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>..</th>
+                            <th>File Name</th>
+                            <th width="30%">Process</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="r in oFiles.rows">
+                            <td><button v-on:click="oFiles.uploadFile(r,$event)">Upload</button></td>
+                            <td>
+                                
+                                <i class="fa fa-file-pdf-o" style="color: red"></i>&nbsp;<span v-text="r.fileName"></span>
+                                (<strong><span v-text="r.fileSize"></span>&nbsp;<span>kb.</span></strong>)
+                            </td>
+                            <td class="text-center">
+                                <!--
+                                        <button class="btn btn-default btn-xs" ng-click="lstFiles.uploadFile(r,$event)">Upload</button>   
+                                        -->
+                                <span class="ajax_in_process" v-show="r.busy">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Working...</span>
+                                <span><i v-bind:class="{'fa' : true,'fa-check' : r.done }" style="color: darkgreen"></i></span>&nbsp;
+                                        <span><i v-bind:class="{ 'fa' : true,'fa-times' : r.err }" style="color: red"></i></span>&nbsp;
+                                        <span v-text="r.status" v-bind:title="r.title"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer text-right">
+        <button class="btn btn-default" v-on:click="upload($event)"><i class="fa fa-floppy-o"></i>&nbsp;Upload</button>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+body
+{
+    background-color: black;
+}
+
+
+.navbar-dark
+{
+    background-color: black;
+    
+}
+
+.navbar-dark a , .navbar-dark a
+{
+    color: white;
+}
+
+#page-wrapper
+{
+    padding-top: 2px;
+    background-color:white;
+
+}
+
+.sidebar-dark ul li a:hover, .sidebar-dark ul li a:focus, .sidebar-dark li a.active
+{
+    background-color: navy !important;
+    color: white;
+}

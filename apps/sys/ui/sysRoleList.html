@@ -1,0 +1,143 @@
+﻿<style>
+    .list-group .active a {
+        color: white;
+    }
+
+    .breadcrumb-right-menu {
+        float: right;
+    }
+
+        .breadcrumb-right-menu:before {
+            content: "" !important;
+        }
+</style>
+
+<div class="row" ng-controller="myController_RoleList">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb breadcrumb-custom">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Role Management</a></li>
+                    <li class="breadcrumb-right-menu">
+                        <div class="btn-group">
+                            <button class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-gear"></i>&nbsp;Actions&nbsp;<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                                <li><a href="#" ng-click="grd.addNew()"><i class="fa fa-plus"></i>&nbsp;Create Role New</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="grd.src1" placeholder="Search Role" />
+                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                    </div>
+                </div>
+                <div class="list-group">
+                    <div ng-class="{ 'list-group-item' : true, 'active' : r.id  == grd.row.id }" ng-repeat="r in grd.rows | filter : grd.src1 ">
+                        <a href="javascript:;" ng-click="grd.select(r)"><span ng-bind="r.roleName"></span></a>
+
+                        <!-- Single button -->
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-gear"></i>&nbsp;  <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" ng-click="grd.edit1(r)"><i class="fa fa-edit"></i>&nbsp;Edit</a></li>
+                                <li><a href="#" ng-click="grd.del(r,null,$event)"><i class="fa fa-trash-o "></i>&nbsp;Delete</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control" ng-model="grdModules.src1" placeholder="Search Module list" />
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-success" ng-click="grd.save_rights($event)"><i class="fa fa-save"></i>&nbsp;Save Rights</button>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 15px">
+                    <div class="col-md-12">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th width="20%">Module Name</th>
+                                    <th>Operation</th>
+                                </tr>
+                            </thead>
+
+                            <tr ng-repeat="r in grdModules.rows | filter : grdModules.src1 ">
+                                <td>
+                                    <i class="fa fa-list-alt"></i>&nbsp;<span ng-bind="r.module_name"></span>
+                                </td>
+                                <td>
+
+                                    <div ng-repeat="r2 in grdModuleOperations.rows | filter : filter1(r) " style="float: left">
+                                        <label>
+                                            <input type="checkbox" ng-model="r2.chk1" />
+                                            {{r2.OperationName}}  &nbsp;</label>&nbsp;
+                                        
+                                            <input ng-show="r2.OperationType == 'Filter Values' && r2.chk1 " type="text" class="form-control" ng-model="r2.filter_value" />
+
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="modal fade" tabindex="-1" role="dialog" id="divEntry">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title"><i class="fa fa-list-alt"></i>&nbsp;Role Entry</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Role Name</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                            <input type="text" class="form-control" ng-model="grd.row.roleName" placeholder="Role Name" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            &nbsp;
+                <button type="button" class="btn btn-primary" ng-click="grd.save(null,$event)"><i class="fa fa-save"></i>&nbsp;Save </button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+
+        </div>
+    </div>
+</div>
+

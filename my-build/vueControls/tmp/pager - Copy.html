@@ -1,0 +1,12 @@
+<div class="row">
+    <div class="col-md-8">
+        <select v-model="grid.pageSize" @change="grid.setPageSize()" >
+            <option v-for="r in [5,10,20,50]" :value="r">{{r}}</option>
+        </select>
+        Page : <b> {{grid.pageIndex + 1}} </b> Of {{grid.getPageCount()}} | Total Records {{grid.count}}
+    </div>
+    <div class="col-md-4 text-right">
+        <button class="btn btn-xs btn-primary" @click="grid.MovePrevious()" v-show="grid.pageIndex > 0"><i class="fa fa-angle-double-left"></i>&nbsp;Previous</button>
+        <button  class="btn btn-xs btn-primary" @click="grid.MoveNext()" v-show="grid.pageIndex < (grid.getPageCount() -1) ">Next&nbsp;<i class="fa fa-angle-double-right"></i></button>
+    </div>
+</div>

@@ -1,0 +1,129 @@
+﻿<div class="row" ng-controller="UserList">
+    <div class="col-md-12">
+        <div class="row" style="margin-bottom: 5px; margin-top: 10px">
+            <div class="col-md-10">
+                <grd-filter grd="grd"></grd-filter>
+            </div>
+            <div class="col-md-2 text-right">
+                <button class="btn btn-primary btn-xs" ng-click="grd.addNew()"><i class="fa fa-plus"></i>&nbsp;Add New</button>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>User Name 
+                        <sorter grd="grd" col="name"></sorter>
+                    </th>
+                    <th>User ID
+                        <sorter grd="grd" col="userid"></sorter>
+                    </th>
+                    <th>Email
+                        <sorter grd="grd" col="userid"></sorter>
+                    </th>
+                    <th>Mobile</th>
+                    <th>Is Active</th>
+                    <th>Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody ng-hide="grd.busy">
+                <tr ng-repeat="r in grd.rows">
+                    <td><span ng-bind="r.name"></span></td>
+                    <td><span ng-bind="r.userid"></span></td>
+                    <td><a ng-href="mailto:{{r.email}}"><i class="fa fa-envelope-o"></i>&nbsp;<span ng-bind="r.email"></span></a></td>
+                    <td><i class="fa fa-mobile"></i>&nbsp;<span ng-bind="r.mobile"></span></td>
+                    <td><span ng-bind="r.isActive == true ? 'Yes': 'No' ">Yes</span></td>
+                    <td>
+                        <a href="javascript:;" ng-click="grd.edit1(r)"><i class="fa fa-edit"></i></a>
+                        <a href="javascript:;" ng-click="grd.del(r,null$event)"><i class="fa fa-trash-o"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <busy grd="grd"></busy>
+        <pager grd="grd" />
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="divEntry">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"><i class="fa fa-user"></i>&nbsp;User Entry : <span ng-bind="grd.row.name"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <fld grd="grd" fld-name="name" fld-title="User Name" fld-required="true" fld-type="text"></fld>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email <span style="color: red">*</span></label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                            <input type="text" class="form-control" placeholder="Email" ng-model="grd.row.email" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Mobile</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                                    <input type="text" class="form-control" placeholder="Mobile" my-validate="mobile" ng-model="grd.row.mobile" />
+                                </div>
+                                <p class="help-block">e. g. +91489439843</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Role<span style="color: red">*</span></label>
+                                <drp data="'sys:drp\\role'" display-member="roleName" value-member="id" my-model="grd.row.sysRoleID"></drp>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>User ID<span style="color: red">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                                    <input type="text" class="form-control" placeholder="User id" ng-model="grd.row.userid" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Password<span style="color: red">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                                    <input type="password" class="form-control" placeholder="Password" ng-model="grd.row.pwd" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Remarks</label>
+                        <textarea class="form-control" rows="3" ng-model="grd.row.remarks"></textarea>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="grd.save(null,$event)"><i class="fa fa-floppy-o"></i>&nbsp;Save changes</button>
+                </div>
+            </div>
+
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</div>
+

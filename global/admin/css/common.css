@@ -1,0 +1,82 @@
+﻿body {
+}
+.badge-primary {
+    background-color: #428bca;
+}
+.badge-success {
+    background-color: #5cb85c;
+}
+.badge-danger {
+    background-color: #d9534f;
+}
+
+
+.img-passport {
+    height:110px;
+    width:100px;
+}
+
+.img-passport-sm {
+    height:30px;
+    width:25px;
+    padding:2px;
+}
+
+.img-passport-lg {
+    height: 220px;
+    width: 200px;
+}   
+
+.busy-lg {
+    background-image: url('GIF/ajax-loader.gif');
+    background-repeat: no-repeat;
+    text-align:center;
+    height: 83px;
+    width:83px; 
+}
+
+}
+
+
+#ui-datepicker-div {
+    z-index:10000 !important;
+}
+
+
+.ajax_in_process {
+    background-image: url('GIF/input-spinner.gif');
+    background-repeat: no-repeat;
+    height: 19px;
+    width:19px; 
+}
+
+.busy-xs {
+    background-image: url('GIF/input-spinner.gif');
+    background-repeat: no-repeat;
+    height: 19px;
+    width:19px; 
+}
+
+
+
+no-padding {
+    padding-left: 0px !important;
+}
+
+
+
+
+
+/* PDF Viewer Start*/
+.pdfContainer
+{
+    border:1px solid;
+}
+
+.pdfViewer
+{
+    margin-top:5px;
+    cursor:crosshair;
+    width:100%
+}
+/* PDF Viewer End*/

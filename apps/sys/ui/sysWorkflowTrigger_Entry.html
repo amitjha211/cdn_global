@@ -1,0 +1,118 @@
+﻿<div class="row" ng-controller="workflow_trigger_entry">
+    <div class="col-md-10">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <i class="fa fa-bolt"></i>&nbsp;Trigger Entry
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Trigger Name</label>
+                            <input type="text" class="form-control" ng-model="grd.row.trigger_name" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Trigger Type</label>
+                            <select class="form-control" ng-model="grd.row.trigger_type">
+                                <option value="">--Select--</option>
+                                <option value="Email">Email</option>
+                                <option value="SMS">SMS</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>
+                            <input type="checkbox" ng-model="grd.row.active" />
+                            Is Active
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Trigger Execution Date Field</label>
+                            <select class="form-control" ng-model="grd.row.date_field">
+                                <option value="">--Select--</option>
+                                <option value="DOJ">Date Of Joining</option>
+                                <option value="Add_Date">Uploaded Date</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Trigger Execution Type</label>
+                            <select class="form-control" ng-model="grd.row.date_execution_type">
+                                <option value="After">After</option>
+                                <option value="Before">Before</option>
+                                <option value="On">On</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>in Days</label>
+                            <input type="text" class="form-control" ng-model="grd.row.date_counter" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>To</label>
+                            <input type="text" class="form-control" ng-model="grd.row.email_to" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>CC</label>
+                            <input type="text" class="form-control" ng-model="grd.row.email_cc" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <input type="text" class="form-control" ng-model="grd.row.email_sub" />
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Workflow Status</label>
+                                    <input type="text" class="form-control" ng-model="grd.row.workflowStatus" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Where Condition</label>
+                                    <input type="text" class="form-control" ng-model="grd.row.whereCondition" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="htmlEditor1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button class="btn btn-md btn-primary" ng-click="grd.save(null,$event)"><i class="fa fa-save"></i>&nbsp;Save</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <ul>
+            <li ng-repeat="r in grdFields.rows">[<span ng-bind="r.fieldTitle"></span>]</li>
+        </ul>
+    </div>
+</div>
+

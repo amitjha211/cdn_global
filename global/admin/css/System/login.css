@@ -1,0 +1,37 @@
+
+
+body {
+    background-color:#eee;
+}
+
+.login_box {
+    
+    max-width:300px;
+    margin:0 auto ;
+    margin-top:10%;
+	margin-bottom:10%;
+	float:right;
+}
+
+.login_box .panel {
+    
+}
+
+
+.logo_body {
+    text-align:center
+
+}
+
+body{
+    
+    background-position-x: center;
+    background-position-y: bottom;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+

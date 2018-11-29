@@ -1,0 +1,19 @@
+<div class="form-group">
+    <label><span ng-bind="fldTitle"></span>&nbsp;<span  ng-show="fldRequired" style="color: red">**</span>  </label>
+    <input type="password" ng-if="isIcon() == false && isType('password')" class="form-control" ng-model="grd.row[fldName]" />
+    <input type="text" ng-if="isIcon() == false && isType('text') " class="form-control"  ng-model="grd.row[fldName]" />
+    <textarea rows="4" ng-if="isIcon() == false && isType('multiline')" class="form-control"  ng-model="grd.row[fldName]"></textarea>
+    <drp data="drpData" ng-if="isIcon() == false && isType('drp')"  display-member="{{displayMember}}" value-member="{{valueMember}}" my-model="grd.row[fldName]"></drp>
+
+    <div class="input-group" ng-if="isIcon()"> 
+        <span class="input-group-addon"><i ng-class="['fa',fldIcon]"></i></span> 
+        
+        <input type="password" ng-if="isIcon() == true && isType('password')" class="form-control" ng-model="grd.row[fldName]" />
+    
+        <input type="text" ng-if="isIcon() == true && isType('text')" class="form-control"  ng-model="grd.row[fldName]"  />
+    
+        <textarea rows="4" ng-if="isIcon() == true && isType('multiline')" class="form-control"  ng-model="grd.row[fldName]"></textarea>
+    
+        <drp data="drpData"ng-if="isIcon() == true && isType('drp')"  display-member="{{displayMember}}" value-member="{{valueMember}}" my-model="grd.row[fldName]"></drp>
+    </div>
+</div>

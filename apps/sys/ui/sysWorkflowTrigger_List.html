@@ -1,0 +1,57 @@
+﻿<div class="row" ng-controller="workflow_trigger_list">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <i class="fa fa-bolt"></i>&nbsp;Workflow 
+                <a href="../Developer/Workflow_trigger_Entry" class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i>&nbsp;Add New</a>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+
+                            <th>Trigger Name</th>
+                            <th>Trigger Type</th>
+                            <th>To Email</th>
+                            <th>CC Email</th>
+                            <th>Is Active</th>
+
+                            <th width="10%"><i class="fa fa-gear"></i>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="r in grd.rows">
+                            <td><span ng-bind="r.trigger_name"></span></td>
+                            <td><span ng-bind="r.trigger_type"></span></td>
+                            <td>
+                                <span ng-bind="r.email_to"></span>
+                            </td>
+                            <td>
+                                <span ng-bind="r.email_cc"></span>
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="r.active" />
+                            </td>
+                            <td>
+                                <a href="../Developer/workflow_Trigger_entry?id={{r.id}}"><i class="fa fa-edit"></i></a>
+                                <!--
+                                &nbsp;
+                                <a href="javascript:;" ng-click="grd.showTriggers(r)" title="Trigger List"><i class="fa fa-bolt" style="color:orange"></i> </a>
+                                -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <busy grd="grd"></busy>
+                <pager grd="grd"></pager>
+
+
+                <!-- /.modal -->
+
+            </div>
+
+        </div>
+    </div>
+    
+</div>

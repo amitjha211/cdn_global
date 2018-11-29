@@ -1,0 +1,19 @@
+<li>
+    <div
+      :class="{bold: isFolder}"
+      @click="toggle"
+      @dblclick="changeType">
+      <i class="fa fa-folder" style="color:#ef9f08" v-show="open == false"></i>
+        <i class="fa fa-folder-open" style="color:#ef9f08"  v-show="open == true" ></i>
+        <a href="javascript:;"><span v-text="model.folderName" v-bind:class="{ badge : treeInfo.currentNode.id == model.id ,'text-danger' : treeInfo.cutNode.id == model.id }" ></span></a>
+      <span v-if="isFolder">[{{open ? '-' : '+'}}]</span>
+    </div>
+    <ul v-show="open" v-if="isFolder" style="padding-left:16px">
+      <item
+        class="item"
+        v-for="model in model.children"
+        :model="model"  :treeInfo="treeInfo" >
+      </item>
+      <!--<li class="add" ><a href="javascript:;" @click="addChild">+ Add</a> </li>-->
+    </ul>
+</li>

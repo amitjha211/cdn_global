@@ -1,0 +1,67 @@
+﻿
+<div class="form-group" ng-repeat="rFilter in grd.filter.rows" style="margin-bottom:3px">
+    <div class="input-group">
+        <!--
+        <div class="input-group-btn">
+            <button class="btn btn-success btn-xs" ng-click="grd.filter.addRow()"><i class="fa fa-plus "></i></button>
+        </div>
+        
+        <div class="input-group-btn">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default btn-md dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    Actions111111111
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    <li><a href="#">Action</a>
+                    </li>
+                    <li><a href="#">Another action</a>
+                    </li>
+                    <li><a href="#">Something else here</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        -->
+        <div class="input-group-btn">
+            <select class="form-control" style="width: 200px" ng-model="rFilter.name" ng-options="r['name'] as  r['title'] for r in grd.filter.fields">
+                <option >--Select--</option>
+            </select>
+        </div>
+        
+        <div class="input-group-btn">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default btn-md dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-gear"></i>&nbsp;<span ng-bind="rFilter.operator"></span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    <li><a href="#" ng-click="rFilter.operator = 'LIKE'">Like</a></li>
+                    <li><a href="#" ng-click="rFilter.operator = '='">= (Equals)</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#" ng-click="grd.filter.addRow()"><i class="fa fa-plus"></i>&nbsp;Add New Filter</a></li>
+                    <li><a href="#" ng-click="grd.filter.del($index)"><i class="fa fa-minus"></i>&nbsp;Remove Filter</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!--
+        <div class="input-group-btn">
+            <select class="form-control" style="width: 100px" ng-model="rFilter.operator"  >
+                <option>--Select--</option>
+                <option>LIKE</option>
+                <option>=</option>
+            </select>
+        </div>
+        -->
+        
+        <input type="text" placeholder="Search Plan..." class="form-control"  ng-model="rFilter.val"  ng-keypress="grd.loadOnEnter($event)"/>
+        <div class="input-group-btn">
+            <button class="btn btn-primary" ng-click="grd.load()"><i class="fa fa-search"></i></button>
+            <button class="btn btn-default" title="Clear Filter"  ng-show="grd.filter.rows.length == ($index + 1)" ng-click="grd.filter.reset()"><i class="fa fa-retweet"></i></button>
+        </div>
+    </div>
+</div>
